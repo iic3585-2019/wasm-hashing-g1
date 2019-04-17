@@ -1,5 +1,5 @@
 Module.onRuntimeInitialized = () => {
-  
+
   const int_sqrt = Module.cwrap('int_sqrt', 'number', ['number']);
   const hash = Module.cwrap('hash', 'number', ['string']);
   const mult = Module.cwrap('mult', 'number', ['number', 'number']);
