@@ -10,7 +10,7 @@
 using namespace std;
  
 /*
- * Función Power(double x, long int y)
+ * Función Power(long int x, long int y)
  * calcula el número que resulta de calcular
  * x elevado a y. Se realiza por recursión.
  * Devuelve un tipo T, que se supone será

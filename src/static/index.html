@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Nervioso</title>
+    <title>Web Assembly</title>
     <script type="text/javascript" src="http://localhost:8080/main.js"></script>
     <script type="text/javascript" src="http://localhost:8080/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/index.css" />
 </head>
 <body>
 
-    <h1>Hash djb2</h1>
-    <!-- http://www.cse.yorku.ca/~oz/hash.html -->
-
-    <div>
-        <input id="hash" type="text">
-    </div>
-    <div>
-        <input id="hash-run" type="button" value="Calcular">
-    </div>
-    <div id="hash-result">
-
-    </div>
-
-    <h1>Algoritmo de Karatsuba</h1>
-
-    <!-- http://code.activestate.com/recipes/576827-karatsuba-algorithm/ -->
-
-    <div>
-        <input id="kar-a" type="text">
-        <input id="kar-b" type="text">
-    </div>
-    <div>
-        <input id="kar-run" type="button" value="Calcular">
-    </div>
-    <div id="kar-result">
+    <div class="alg">
+        <h1>Hash djb2</h1>
+        <!-- http://www.cse.yorku.ca/~oz/hash.html -->
+    
+        <div class="inp">
+            <input id="hash" type="text">
+        </div>
+        <div class="inp">
+            <input id="hash-run" type="button" value="Calcular">
+        </div>
+        <div id="hash-result" class="inp">
+    
+        </div>
 
     </div>
 
-    <h1>Distancia de Levenshtein</h1>
+    <div class="alg">
+        <h1>Algoritmo de Karatsuba</h1>
+    
+        <!-- http://code.activestate.com/recipes/576827-karatsuba-algorithm/ -->
+    
+        <div class="inp">
+            <input id="kar-a" type="text">
+            <input id="kar-b" type="text">
+        </div>
+        <div class="inp">
+            <input id="kar-run" type="button" value="Calcular">
+        </div>
+        <div id="kar-result" class="inp">
+    
+        </div>
 
-    <!-- https://github.com/wooorm/levenshtein.c -->
+    </div>
 
-    <div>
-        <input id="lev-a" type="text">
-        <input id="lev-b" type="text">
-    </div>
-    <div>
-        <input id="lev-run" type="button" value="Calcular">
-    </div>
-    <div id="lev-result">
+    <div class="alg">
+        <h1>Distancia de Levenshtein</h1>
+    
+        <!-- https://github.com/wooorm/levenshtein.c -->
+    
+        <div class="inp">
+            <input id="lev-a" type="text">
+            <input id="lev-b" type="text">
+        </div>
+        <div class="inp">
+            <input id="lev-run" type="button" value="Calcular">
+        </div>
+        <div id="lev-result" class="inp">
+    
+        </div>
 
     </div>
 
