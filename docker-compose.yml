@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  wasm:
+    build: .
+    env_file:
+      - .env
+    command: yarn start
+    volumes:
+      - .:/wasm-asd-g1
+      - yarn_cache:/yarn
+      - node_modules_cache:/wasm-asd-g1/node_modules
+      - emsdk:/wasm-asd-g1/emsdk
+      - root:/root
+    ports:
+      - 8080:8080
+
+volumes:
+  yarn_cache:
+  node_modules_cache:
+  emsdk:
+  root:
