@@ -1,6 +1,6 @@
 /* Alumno: Guillermo López Leal 2IM1
  * 
- * Karatsuba algorith: fast multiplication of large integers.
+ * Karatsuba algorith: fast multiplication of large long integers.
  * 
  * Sorry for the comments in Spanish, but I think the code is very legible ;)
  */
@@ -10,14 +10,14 @@
 using namespace std;
  
 /*
- * Función Power(double x, int y)
+ * Función Power(double x, long int y)
  * calcula el número que resulta de calcular
  * x elevado a y. Se realiza por recursión.
  * Devuelve un tipo T, que se supone será
- * un número: int, double, float...
+ * un número: long int, double, float...
  *
  */
-int Power(int x, int y) {
+long int Power(long int x, long int y) {
 	if (y == 0)
 		return (1);
 	else if (y == 1)
@@ -27,17 +27,17 @@ int Power(int x, int y) {
 }
  
 /*
- * Función Digitos (T n, int &dig)
+ * Función Digitos (T n, long int &dig)
  * calcula el número de dígitos (dig) que tiene el número n, que
- * podría ser cualquier tipo de número: int, float, double...
- * Devuelve el número de dígitos (int).
+ * podría ser cualquier tipo de número: long int, float, double...
+ * Devuelve el número de dígitos (long int).
  * He preferido cambiar la función para que devuelva el número
  * de dígitos en vez de mostrarlo por pantalla ya que en el algoritmo de
  * Karatsuba es necesario saber el número de dígitos de un número.
  *
  */
  
-int Digitos (int n, int &dig) {
+long int Digitos (long int n, long int &dig) {
 	if (n < 10)	return (dig+1);
 	else {
 		dig++;
@@ -54,7 +54,7 @@ int Digitos (int n, int &dig) {
  * 3454567 % power(10, 3) -> 3454567 % 1000 -> 567
  *
  */
-int ultimos(int digitos, int &numero) {
+long int ultimos(long int digitos, long int &numero) {
 	return numero % Power(10, digitos);
 }
  
@@ -64,21 +64,21 @@ int ultimos(int digitos, int &numero) {
  * al número de dígitos que queremos sacar.
  *
  */
-int primeros(int digitos, int &numero) {
+long int primeros(long int digitos, long int &numero) {
 	return numero/Power(10, digitos);
 }
  
 /*
  * Algoritmo de Karatsuba. Multiplicación rápida de enteros largos
- * @param: int &u -> pasamos por referencia uno de los números a multiplicar.
- * @param: int &v -> pasamos por referencia el segundo número.
+ * @param: long int &u -> pasamos por referencia uno de los números a multiplicar.
+ * @param: long int &v -> pasamos por referencia el segundo número.
  */
-int multiplica(int &u, int &v) {
-	int dig1=0, dig2=0;
+long int multiplica(long int &u, long int &v) {
+	long int dig1=0, dig2=0;
 	//División en trozos iguales de los números. Tenemos que dividir según
 	//el mayor de ambos entre 2: 3457689 -> 345 y 7689
 	//							 3455 -> 0 y 3455
-	int numDigitos = max(Digitos(u, dig1), Digitos(v, dig2));
+	long int numDigitos = max(Digitos(u, dig1), Digitos(v, dig2));
 	//Caso base, cuando se puede hacer una multiplicación directa (1 cifra)
 	//En teoría si se lograba beneficio con números de más de 300 bits, se podría
 	//sustituir ese 1 por 300.
@@ -88,46 +88,46 @@ int multiplica(int &u, int &v) {
 	//NO podemos sacar los 4.5 mayores y los 4.5 menores
 	numDigitos = (numDigitos / 2) + (numDigitos % 2);
 	//Vamos calculando los diferentes w, x, y, z…
-	int w = primeros(numDigitos, u);
-	int x = ultimos(numDigitos, u);
-	int y = primeros(numDigitos, v);
-	int z = ultimos(numDigitos, v);
-	//Operaciones intermedias
-	int p=multiplica(w, y);
-	int q=multiplica(x, z);
-	int wMasx = w + x;
-	int zMasy = z + y;
+	long int w = primeros(numDigitos, u);
+	long int x = ultimos(numDigitos, u);
+	long int y = primeros(numDigitos, v);
+	long int z = ultimos(numDigitos, v);
+	//Operaciones long intermedias
+	long int p=multiplica(w, y);
+	long int q=multiplica(x, z);
+	long int wMasx = w + x;
+	long int zMasy = z + y;
 	//Volvemos a llamar al algoritmo hasta que (como se ve arriba en el if) lleguemos al
 	//caso base de n=numDigitos=1. Llamada recursiva
-	int r=multiplica(wMasx, zMasy);
+	long int r=multiplica(wMasx, zMasy);
 	// Salida final, usamos la función Power implementada arriba
 	return Power(10, 2*numDigitos)*p+Power(10, numDigitos)*(r-p-q)+q;
 }
  
 //Funcion aleatoria para sacar números aleatorios menores que el parámetro x
-int MiRandom(int x)
+long int MiRandom(long int x)
 {
-	int Numero=0;
+	long int Numero=0;
 	Numero=(rand()%x);
 	return Numero;
 }
  
-// int main () {
+// long int main () {
 // 	//Inicializamos la semilla apuntando al tiempo
 // 	srand(time(NULL));
-// 	int numero=0;
-// 	//Menor que 46340 -> raiz(max_int)=raiz(2147483647)...
+// 	long int numero=0;
+// 	//Menor que 46340 -> raiz(max_long int)=raiz(2147483647)...
 // 	//Obviamente podría funcionar con más de 46340, pero podría producirse overflow.
 // 	//Sólo ocurriría en el caso de que la semilla hiciera dos 46341 -> bum!!
 // 	// Se podría poner hasta semilla 2147483647 si se tuviera la suerte que el random
 // 	// fuera 1 y 2147483647
-// 	//Además es que hemos limitado a "int", si hubiéramos puesto un valor más grande, como
-// 	//unsigned long long int, tendríamos valores perfectos y muy grandes
+// 	//Además es que hemos limitado a "long int", si hubiéramos puesto un valor más grande, como
+// 	//unsigned long long long int, tendríamos valores perfectos y muy grandes
 // 	cout << "Número máximo a multiplicar (menor que 46341, leer código fuente) :";
 // 	cin >> numero;
 // 	//Creamos dos enteros aleatorios máximo "numero"
-// 	int num1 = MiRandom(numero);
-// 	int num2 = MiRandom(numero);
+// 	long int num1 = MiRandom(numero);
+// 	long int num2 = MiRandom(numero);
 // 	//Les mostramos
 // 	cout << "\nnum1=" << num1;
 // 	cout << "\nnum2=" << num2;

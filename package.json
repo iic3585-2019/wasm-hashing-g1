@@ -15,7 +15,7 @@
     "webpack-dev-server": "^3.3.1"
   },
   "scripts": {
-    "emcc": "emcc src/cpp/main.cpp -o src/static/main.js -s EXPORTED_FUNCTIONS='[\"_int_sqrt\", \"_hash\", \"_mult\"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"cwrap\"]'",
+    "emcc": "emcc src/cpp/main.cpp -o src/static/main.js -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"cwrap\"]'",
     "start": "webpack-dev-server --hot"
   }
 }

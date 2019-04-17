@@ -4,19 +4,17 @@
 // found in the LICENSE file.
 
 #include <math.h>
-#include <iostream>
+#include <cstring>
+#include <emscripten/emscripten.h>
+#include "levenshtein.cpp"
 #include "karatsuba.cpp"
 
-using namespace std;
-
 extern "C" {
-int int_sqrt(int x) {
+int EMSCRIPTEN_KEEPALIVE int_sqrt(int x) {
   return sqrt(x);
 }
 
-unsigned long
-hash(unsigned char *str)
-{
+unsigned long EMSCRIPTEN_KEEPALIVE hash(unsigned char *str) {
     unsigned long hash = 5381;
     int c;
 
@@ -26,8 +24,11 @@ hash(unsigned char *str)
     return hash;
 }
 
-int mult(int u, int v) {
+int EMSCRIPTEN_KEEPALIVE mult(long int u, long int v) {
   return multiplica(u, v);
 }
 
+int EMSCRIPTEN_KEEPALIVE distance(char *a, char *b) {
+    return levenshtein(a, b);
+}
 }

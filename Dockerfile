@@ -7,7 +7,7 @@ WORKDIR $APP_HOME
 RUN mkdir -p $YARN_CACHE_FOLDER
 RUN mkdir -p $APP_HOME
 
-RUN apt-get update -qq && apt-get install -y git
+RUN apt-get update -qq && apt-get install -y git libsodium-dev
 RUN yarn config set cache-folder $YARN_CACHE_FOLDER
 
 ADD package.json yarn.lock $APP_HOME/
