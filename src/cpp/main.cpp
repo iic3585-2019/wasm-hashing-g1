@@ -4,15 +4,14 @@
 // found in the LICENSE file.
 
 #include <math.h>
+#include <emscripten/emscripten.h>
 
 extern "C" {
-int int_sqrt(int x) {
+int EMSCRIPTEN_KEEPALIVE int_sqrt(int x) {
   return sqrt(x);
 }
 
-unsigned long
-hash(unsigned char *str)
-{
+unsigned long EMSCRIPTEN_KEEPALIVE hash(unsigned char *str) {
     unsigned long hash = 5381;
     int c;
 
