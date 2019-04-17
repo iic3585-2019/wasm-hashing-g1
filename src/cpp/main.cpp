@@ -4,7 +4,9 @@
 // found in the LICENSE file.
 
 #include <math.h>
+#include <cstring>
 #include <emscripten/emscripten.h>
+#include "levenshtein.cpp"
 
 extern "C" {
 int EMSCRIPTEN_KEEPALIVE int_sqrt(int x) {
@@ -19,5 +21,9 @@ unsigned long EMSCRIPTEN_KEEPALIVE hash(unsigned char *str) {
         hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
 
     return hash;
+}
+
+int EMSCRIPTEN_KEEPALIVE distance(char *a, char *b) {
+    return levenshtein(a, b);
 }
 }
