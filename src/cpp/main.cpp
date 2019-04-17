@@ -4,6 +4,10 @@
 // found in the LICENSE file.
 
 #include <math.h>
+#include <iostream>
+#include "karatsuba.cpp"
+
+using namespace std;
 
 extern "C" {
 int int_sqrt(int x) {
@@ -21,4 +25,9 @@ hash(unsigned char *str)
 
     return hash;
 }
+
+int mult(int u, int v) {
+  return multiplica(u, v);
+}
+
 }
